@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "bighead",
+    "version": "1.0",
+    "permissions": ["activeTab", "storage", "http://*/*", "https://*/*"],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["content.js"]
+      }
+    ]
+}
+  
