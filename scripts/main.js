@@ -6,11 +6,16 @@ if (document.readyState !== 'loading') {
     });
 }
 
-function main() {
+function llmRequest(prompt, callback) {
+    chrome.runtime.sendMessage(
+        { contentScriptQuery: "llmRequest", data: prompt },
+        callback
+    );
+}
+
+async function main() {
     console.log("Webpage loaded!")
     const scrapedData = scrapeData();
-    sendDataToAPI(scrapedData, (response) => {
-        console.log("Received response from API:", response);
-        highlightElements(response);
-    });
+
+    llmRequest("nothing to say, you say something", console.log);
 }
