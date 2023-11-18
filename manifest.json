@@ -1,20 +1,33 @@
 {
-    "manifest_version": 3,
-    "name": "bighead",
-    "version": "1.0",
-    "permissions": ["activeTab", "storage"],
-    "host_permissions": ["http://*/", "https://*/", "*://*/*"],
-    "action": {
+  "manifest_version": 3,
+  "name": "bighead",
+  "version": "1.0",
+  "permissions": [
+      "activeTab",
+      "storage"
+  ],
+  "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+  ],
+  "action": {
       "default_popup": "html/index.html"
-    },
-    "background": {
+  },
+  "background": {
       "service_worker": "scripts/background.js"
-    },
-    "content_scripts": [
+  },
+  "content_scripts": [
       {
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["scripts/content.js"]
+          "matches": [
+              "http://*/*",
+              "https://*/*"
+          ],
+          "js": [
+              "scripts/scrape.js",
+              "scripts/api.js",
+              "scripts/domUtils.js",
+              "scripts/main.js"
+          ]
       }
-    ]
+  ]
 }
-  
