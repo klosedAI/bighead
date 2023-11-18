@@ -26,8 +26,7 @@
               "scripts/scrape.js",
               "scripts/api.js",
               "scripts/domUtils.js",
-              "scripts/main.js",
-              "scripts/inject.js"
+              "scripts/main.js"
           ]
       }
   ]
