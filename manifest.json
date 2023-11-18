@@ -4,15 +4,15 @@
     "version": "1.0",
     "permissions": ["activeTab", "storage", "http://*/*", "https://*/*"],
     "action": {
-      "default_popup": "popup.html"
+      "default_popup": "html/index.html"
     },
     "background": {
-      "service_worker": "background.js"
+      "service_worker": "scripts/background.js"
     },
     "content_scripts": [
       {
         "matches": ["http://*/*", "https://*/*"],
-        "js": ["content.js"]
+        "js": ["scripts/content.js"]
       }
     ]
 }
