@@ -19,7 +19,7 @@ function scrapeData() {
 
     // Function to load dynamic content (e.g., by scrolling)
     function loadDynamicContent(callback) {
-        const totalScrolls = 5; // Number of times to scroll; adjust as needed
+        const totalScrolls = 1; // Number of times to scroll; adjust as needed
         let currentScroll = 0;
 
         let interval = setInterval(() => {
@@ -28,9 +28,10 @@ function scrapeData() {
 
             if (currentScroll >= totalScrolls) {
                 clearInterval(interval);
+                window.scrollTo(0, 0); // Scroll back to the top of the page
                 callback(); // Call the callback function after scrolling is done
             }
-        }, 2000); // Interval between scrolls; adjust as needed
+        }, 500); // Interval between scrolls; adjust as needed
     }
 
     // Function to scrape data after dynamic content is loaded
@@ -51,7 +52,7 @@ function scrapeData() {
     loadDynamicContent(scrapeAfterLoading);
 }
 
-scrapeData(); 
+// scrapeData(); 
 
 // [UNTESTED] :
 // Function to send scraped data to your API and get the response
