@@ -8,9 +8,12 @@ if (document.readyState !== 'loading') {
 
 function main() {
     console.log("Webpage loaded!")
-    const scrapedData = scrapeData();
-    sendDataToAPI(scrapedData, (response) => {
-        console.log("Received response from API:", response);
-        highlightElements(response);
+    scrapeData((content) => {
+        console.log("Scraped data:", content);
+        sendDataToAPI(content, (response) => {
+            console.log("Received response from API:", response);
+            highlightElements(response);
+        });
     });
+    
 }
