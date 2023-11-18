@@ -13,7 +13,7 @@ function createAndDownloadTextFile(text) {
     document.body.removeChild(a);
 }
 
-function scrapeData() {
+function scrapeData(callback) {
     console.log("Scraping data...");
 
     // Function to load dynamic content (e.g., by scrolling)
@@ -35,16 +35,18 @@ function scrapeData() {
 
     // Function to scrape data after dynamic content is loaded
     function scrapeAfterLoading() {
-        const paragraphs = document.querySelectorAll('p');
+
+        // const paragraphs = document.querySelectorAll('p');
+        // paragraphs.forEach(paragraph => {
+        //     scrapedData.push(paragraph.innerText);
+        // });
+        const contentElements = document.querySelectorAll('.main-content p, .main-content h1, .main-content h2, .main-content ul');
         let scrapedData = [];
-
-        paragraphs.forEach(paragraph => {
-            scrapedData.push(paragraph.innerText);
+    
+        contentElements.forEach(element => {
+            scrapedData.push(element.innerText); 
         });
-
-        console.log("Scraped Data: ", scrapedData);
         const content = scrapedData.join('\n\n');
-        // createAndDownloadTextFile(content);
         callback(content);
     }
 
