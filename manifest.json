@@ -2,7 +2,8 @@
     "manifest_version": 3,
     "name": "bighead",
     "version": "1.0",
-    "permissions": ["activeTab", "storage", "http://*/*", "https://*/*"],
+    "permissions": ["activeTab", "storage"],
+    "host_permissions": ["http://*/", "https://*/", "*://*/*"],
     "action": {
       "default_popup": "html/index.html"
     },
