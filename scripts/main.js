@@ -6,7 +6,14 @@ if (document.readyState !== 'loading') {
     });
 }
 
-function main() {
+function llmRequest(prompt, callback) {
+    chrome.runtime.sendMessage(
+        { contentScriptQuery: "llmRequest", data: prompt },
+        callback
+    );
+}
+
+async function main() {
     console.log("Webpage loaded!")
     scrapeData((content) => {
         console.log("Scraped data:", content);
@@ -15,5 +22,5 @@ function main() {
             highlightElements(response);
         });
     });
-    
+    llmRequest("nothing to say, you say something", console.log);
 }
