@@ -27,7 +27,8 @@
         "styles/chatButtonStyles.css",
         "html/chatButton.html",
         "scripts/chatButton.js",
-        "styles.chatButtonStyles.css"
+        "styles.chatButtonStyles.css",
+        "assets/bighead.png"
       ],
       "matches": ["<all_urls>"]
     }

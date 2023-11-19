@@ -1,15 +1,8 @@
 // Create the chat button
 const chatButton = document.createElement("div");
 chatButton.className = "chat-button";
-chatButton.style.backgroundImage = "../bighead.jpeg"; // Keep dynamic styles in JS
-
-// Create the draggable indicator
-const draggableIndicator = document.createElement("div");
-draggableIndicator.className = "draggable-indicator";
-draggableIndicator.innerHTML = "<div class='dot'></div>".repeat(3); // Assuming 'dot' is a class in CSS
-
-// Append the draggable indicator to the button
-chatButton.appendChild(draggableIndicator);
+const bgURL = chrome.runtime.getURL("../assets/bighead.png");
+chatButton.style.backgroundImage = `url(${bgURL})`; // Keep dynamic styles in JS
 
 // Event to expand the button and show the drag indicator on hover
 chatButton.onmouseenter = function() {
