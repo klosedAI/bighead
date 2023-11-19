@@ -23,12 +23,8 @@ function llmRequest(prompt, callback) {
 
 async function main() {
     console.log("Webpage loaded!")
-    scrapeData((content) => {
-        console.log("Scraped data:", content);
-        sendDataToAPI(content, (response) => {
-            console.log("Received response from API:", response);
-            highlightElements(response);
-        });
-    });
+
+    const data = await scrapeData();
+    console.log(data)
     llmRequest("nothing to say, you say something", console.log);
 }
