@@ -5,6 +5,13 @@ chatIframe.classList.add('chat-window');
 chatIframe.style.display = 'none';
 document.body.appendChild(chatIframe);
 
+window.onmessage = function(e) {
+    if (e.data == 'closeChatWindow') {
+        chatIframe.style.display = 'none';
+        showChatButton();
+    }
+}
+
 if (document.readyState !== 'loading') {
     main();
 } else {

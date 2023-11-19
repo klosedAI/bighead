@@ -127,6 +127,5 @@ function showChatWindow() {
 
 function hideChatWindow() {
     console.log("Hiding chat window");
-    const chatIframe = document.querySelector('.chat-window');
-    if (chatIframe) chatIframe.style.display = 'none';
+    window.top.postMessage('closeChatWindow', '*');
 }
