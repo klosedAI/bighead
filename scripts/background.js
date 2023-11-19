@@ -31,7 +31,7 @@ async function claudeRequest(body) {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.contentScriptQuery == "llmRequest") {
         (async () => {
-            body.prompt = "\n\nHuman: " + request.data + "\n\n Assistant:";
+            body.prompt = request.data;
             const response = await claudeRequest(body);
             sendResponse({
                 llmResponse: response,
