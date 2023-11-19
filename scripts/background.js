@@ -1,12 +1,12 @@
+console.log('background.js started')
+
+var apiKey = ''; 
+chrome.storage.sync.get("ANTHROPIC_API_KEY", (key) => {
+    apiKey = key['ANTHROPIC_API_KEY'];
+    console.log("Found Anthropic API key");
+});
+
 const url = 'https://api.anthropic.com/v1/complete';
-const apiKey = ''; // Replace with your actual API key
-
-const headers = {
-  'anthropic-version': '2023-06-01',
-  'Content-Type': 'application/json',
-  'x-api-key': apiKey
-};
-
 const body = {
   model: "claude-2.0",
   prompt: "\n\nHuman: Hello, world! How are you? \n\nAssistant:",
@@ -17,7 +17,11 @@ const body = {
 async function claudeRequest(body) {
     var response = await fetch(url, {
       method: 'POST',
-      headers: headers,
+      headers: {
+          'anthropic-version': '2023-06-01',
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey
+      },
       body: JSON.stringify(body)
     })
     .then(response => response.json());
@@ -37,3 +41,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
   
+// If user enters new API key through settings page, update it in here
+chrome.storage.onChanged.addListener((changes, namespace) => {
+  for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
+    if (namespace == "sync" && key == "ANTHROPIC_API_KEY") {
+        console.log("Got API KEY!");
+        apiKey = newValue;
+    }
+  }
+});
+
