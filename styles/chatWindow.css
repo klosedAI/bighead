@@ -1,4 +1,28 @@
 /* CSS for the chat window */
+#chat-input, #send-button {
+    width: calc(100% - 20px); /* Adjust width as needed, 20px for padding */
+    padding: 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+#chat-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#send-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#send-button:hover {
+    background-color: #218838;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -6,8 +30,9 @@ body {
 }
 
 .chat-window {
-    height: 400px;
-    width: 300px;
+    height: 500px;
+    width: 350px; 
+    background-color: #f8f9fa;
     position: fixed;
     bottom: 100px; /* Adjust as per your layout */
     right: 20px; /* Adjust as per your layout */
@@ -15,6 +40,15 @@ body {
     z-index: 10000;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.chat-history {
+    height: calc(100% - 60px); /* Adjust height based on total chat window height */
+    overflow-y: auto;
+    background-color: #fff; /* Background color for chat history */
+    border: 1px solid #ddd; /* Border for chat history */
+    margin-bottom: 10px;
+    padding: 5px;
 }
 
 .chat-header {
