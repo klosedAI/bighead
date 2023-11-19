@@ -1,17 +1,25 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const closeButton = document.getElementById('close-button');
-
-    closeButton.addEventListener('click', function () {
-        // Replace the chat window with the chatButton iframe
-        const chatWindow = document.querySelector('.chat-window');
-        chatWindow.style.display = 'none';
-
-        // Create a new iframe for the chatButton.html
-        const chatButtonIframe = document.createElement('iframe');
-        chatButtonIframe.src = 'chatButton.html';
-        chatButtonIframe.classList.add('chatButton-iframe');
-
-        // Append the chatButton iframe to the body
-        document.body.appendChild(chatButtonIframe);
-    });
+// Sample conversations
+const conversations = [
+    { id: 1, name: "Alice", lastMessage: "Hey, how are you?" },
+    { id: 2, name: "Bob", lastMessage: "Did you see my email?" },
+    // ... more conversations
+];
+  
+document.addEventListener("DOMContentLoaded", function() {
+    const conversationList = document.querySelector('.conversation-list');
+    if (conversationList) {
+        conversationList.innerHTML = conversations.map(c => `<div class="conversation">${c.name}: ${c.lastMessage}</div>`).join('');
+    }
 });
+  
+// Functions to show and hide chat window
+function showChatWindow() {
+    const chatIframe = document.querySelector('.chat-window');
+    if (chatIframe) chatIframe.style.display = 'block';
+}
+
+function hideChatWindow() {
+    const chatIframe = document.querySelector('.chat-window');
+    if (chatIframe) chatIframe.style.display = 'none';
+}
+  

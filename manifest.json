@@ -41,8 +41,9 @@
         "scripts/scrape.js",
         "scripts/api.js",
         "scripts/domUtils.js",
-        "scripts/main.js",
-        "scripts/chatButton.js"
+        "scripts/chatButton.js",
+        "scripts/chatWindow.js",
+        "scripts/main.js"
       ],
       "css": [
         "styles/chatButtonStyles.css",
