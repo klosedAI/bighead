@@ -7,8 +7,12 @@ function highlightElements(data) {
 
 function highlightSentence(sentence) {
     console.log(sentence)
+    ignoreGroup = "(?: )?(?:<[^>]*>)?(?: )?"
+    regex = sentence.replaceAll(`,`, ` , `)
+    regex = regex.replaceAll(` `, ignoreGroup)
+    console.log(regex)
     const bodyContent = document.body.innerHTML;
-    const highlighted = `<span style="background-color: yellow;">${sentence}</span>`;
-    document.body.innerHTML = bodyContent.replace(new RegExp(sentence, 'g'), highlighted);
+    const highlighted = `<span style="background-color: yellow;">$&</span>`;
+    document.body.innerHTML = bodyContent.replace(new RegExp(regex, 'g'), highlighted);
 }
 
