@@ -12,8 +12,8 @@ function highlightSentence(sentence) {
     regex = regex.replaceAll(`,`, ` , `)
     regex = regex.replaceAll(`.`, ` . `)
     regex = regex.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'); // escape all regex characters
-    regex = regex.replaceAll(`'`, ` ['’] `)
-    regex = regex.replaceAll(`"`, ` ["“”] `)
+    regex = regex.replaceAll(`'`, `\\ ['’]\\ `)
+    regex = regex.replaceAll(`"`, `\\ ["“”]\\ `)
     regex = regex.replaceAll('&', '&(?:amp;)')
     regex = regex.replaceAll(`\\ `, ignoreGroup)
     regex = "[\\s]*" + regex

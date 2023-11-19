@@ -39,7 +39,9 @@
         "https://*/*"
       ],
       "exclude_matches": [
-          "https://www.google.com/*"
+          "https://*.google.com/*",
+          "https://*.twitter.com/*",
+          "https://*.x.com/*"
       ],
       "js": [
         "scripts/scrape.js",
