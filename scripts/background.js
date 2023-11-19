@@ -11,7 +11,8 @@ const body = {
   model: "claude-2.0",
   prompt: "\n\nHuman: Hello, world! How are you? \n\nAssistant:",
   max_tokens_to_sample: 256,
-  stream: false
+  stream: false,
+  temperature: 0
 };
 
 async function claudeRequest(body) {
