@@ -40,6 +40,11 @@ If you feel you're done and all the super important points are covered, respond 
 It is recommended you keep the length of individual highlights small (1-2 sentences each).
 It is extremely important that you return the sentence verbatim, as I will be using it to
 highlight the sentence in the article. Don't include any preamble or quotes, just the sentence.
+
+Within the highlight, each character is important, so please don't change any characters.
+Maintain the tense of the sentence, and don't change any words. If you feel the sentence
+is not grammatically correct, please return it as is, and I will fix it myself.
+
 The text from the website given below:
 
 WEBSITE CONTENT:
