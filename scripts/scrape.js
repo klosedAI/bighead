@@ -25,6 +25,7 @@ function scrapeData() {
                 scrapedData.push(element.innerText);
             });
             const content = scrapedData.join('\n\n');
+            chrome.storage.local.set({ "context": content });
             resolve(content); // Resolve the promise with the content
         }
 

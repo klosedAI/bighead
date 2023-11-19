@@ -21,6 +21,7 @@
   "web_accessible_resources": [
     {
       "resources": [
+        "scripts/scrape.js",
         "html/chatWindow.html",
         "scripts/chatWindow.js",
         "styles/chatButtonStyles.css",
