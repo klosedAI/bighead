@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM fully loaded and parsed');
     // Elements and variables from the HEAD branch
     const sendButton = document.getElementById('send-button');
     const chatInput = document.getElementById('chat-input');
-    const chatHistory = document.getElementById('chat-history');
+    // const chatHistory = document.getElementById('chat-history');
     const closeButton = document.getElementById('close-button');
     let conversationHistory = '';
 
     // Elements and variables from the saneens branch
     const conversations = [
-        { id: 1, name: "Alice", lastMessage: "Hey, how are you?" },
-        { id: 2, name: "Bob", lastMessage: "Did you see my email?" },
+        { id: 1, name: "Bot", lastMessage: "Hi, How may I help you today?" },
         // ... more conversations
     ];
     const conversationList = document.querySelector('.conversation-list');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (userInput) {
             updateChatHistory('User', userInput);
             // Send user input to the API along with scraped data
-            sendDataToAPI(userInput, (response) => {
+            llmRequest(userInput, (response) => {
                 updateChatHistory('Bot', response);
             });
             chatInput.value = ''; // Clear input field after sending
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to update chat history (from HEAD)
     function updateChatHistory(sender, message) {
         conversationHistory += `<p><strong>${sender}:</strong> ${message}</p>`;
-        chatHistory.innerHTML = conversationHistory;
+        conversationList.innerHTML = conversationHistory;
     }
 
     // Populate conversationList with sample conversations (from saneens)

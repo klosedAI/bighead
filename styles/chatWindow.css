@@ -17,7 +17,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 1000;
-    display: none; /* Adjust as needed */
+    /* display: none; */
 }
 
 /* Styles for chat input and send button from HEAD branch */
@@ -46,14 +46,15 @@ body {
 }
 
 /* Styles for chat history from HEAD branch */
-.chat-history {
-    height: calc(100% - 60px); /* Adjust height based on total chat window height */
+
+/* .conversation-list {
+    height: calc(100% - 60px); 
     overflow-y: auto;
-    background-color: #fff; /* Background color for chat history */
-    border: 1px solid #ddd; /* Border for chat history */
+    background-color: #fff; 
+    border: 1px solid #ddd; 
     margin-bottom: 10px;
     padding: 5px;
-}
+} */
 
 /* Styles for chat header and conversation list from saneens branch */
 .chat-header {
