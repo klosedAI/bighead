@@ -1,18 +1,3 @@
-function createAndDownloadTextFile(text) {
-    // Create a blob from the text
-    const blob = new Blob([text], { type: 'text/plain' });
-
-    // Create an anchor element and set the href to the blob URL
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'page-content.txt'; // Name of the downloaded file
-
-    // Append the anchor to the document, trigger the download, and then remove the anchor
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-}
-
 function scrapeData(callback) {
     console.log("Scraping data...");
 
@@ -41,7 +26,7 @@ function scrapeData(callback) {
         // paragraphs.forEach(paragraph => {
         //     scrapedData.push(paragraph.innerText);
         // });
-        const contentElements = document.querySelectorAll('p, ul, h1, h2');    
+        const contentElements = document.querySelectorAll('p, ul, h1, h2, h3, h4, span');    
         contentElements.forEach(element => {
             scrapedData.push(element.innerText); 
         });
