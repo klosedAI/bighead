@@ -1,58 +1,38 @@
-/* CSS for the chat window */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-.chat-window {
-    height: 400px;
+#chat-iframe {
+    border: 1px solid #ccc;
+    border-radius: 8px;
     width: 300px;
+    height: 500px;
     position: fixed;
-    bottom: 100px; /* Adjust as per your layout */
-    right: 20px; /* Adjust as per your layout */
-    border: none;
-    z-index: 10000;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
 }
-
 .chat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: #f7f7f7;
     padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
 }
-
-.chat-header h1 {
-    margin: 0;
-}
-
-#close-button {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 20px;
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
 }
-
-#close-button:focus {
-    outline: none;
-}
-
-.chat-content {
-    flex: 1;
+.conversation-list {
     padding: 10px;
+    max-height: 400px;
     overflow-y: auto;
 }
-
-/* Add more styles as needed for your chat content */
-
-/* Media query for responsiveness */
-@media screen and (max-width: 600px) {
-    .chat-window {
-        width: 100%;
-    }
+.conversation {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
 }
