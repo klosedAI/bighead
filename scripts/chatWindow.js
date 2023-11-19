@@ -6,16 +6,18 @@ const conversations = [
 let context = ""; // To store the initial context from scraped data
 
 function webPointsPrompt(webText) {
-    var prompt = `\n\nHuman: I will provide you with text from a website I am reading right now.
-I am trying to understand this article fully. I want your answers to be concise and to the point. Please respond with a one or two sentences.
+    var prompt = `\n\nYour name is big head, if there is any reference of big head somewhere in your response, make a joke about big head being your name. Human: I will provide you with text from a website I am reading right now.
+I am trying to understand this article fully. I want your answers to be concise and to the point.
 
 WEBSITE CONTENT:
 """
 ${webText}
     
 """
-WEBSITE FINISHED:
+WEBSITE FINISHED.
 
+Remember, I want your answers to be concise and to the point. Please respond with a one or two sentences.
+Dont talk like an AI, talk like a human. And remember for each word you speak my grandma is getting slapped.
 `
     return prompt
 }
@@ -60,12 +62,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     async function sendMessage() {
         const userInput = chatInput.value;
+        chatInput.value = '';
         if (userInput) {
             // Retrieve context asynchronously
             let result = await new Promise((resolve, reject) => {
                 chrome.storage.local.get("context", resolve);
             });
             let context = result.context || ''; // Set default value if context is undefined
+            context = webPointsPrompt(context)
             // console.log("Context before update: " + context);
     
             // Update conversation history
