@@ -37,6 +37,9 @@
         "http://*/*",
         "https://*/*"
       ],
+      "exclude_matches": [
+          "https://www.google.com/*"
+      ],
       "js": [
         "scripts/scrape.js",
         "scripts/api.js",
