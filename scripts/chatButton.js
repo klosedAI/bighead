@@ -1,7 +1,7 @@
 // Create the chat button
 const chatButton = document.createElement("div");
 chatButton.className = "chat-button";
-//chatButton.style.backgroundImage = "url('URL_TO_YOUR_IMAGE')"; // Keep dynamic styles in JS
+chatButton.style.backgroundImage = "../bighead.jpeg"; // Keep dynamic styles in JS
 
 // Create the draggable indicator
 const draggableIndicator = document.createElement("div");
