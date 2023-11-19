@@ -7,11 +7,13 @@ function highlightElements(data) {
 
 function highlightSentence(sentence) {
     console.log(sentence)
-    ignoreGroup = "(?: )?(?:<[^>]*>)?(?: )?"
+    ignoreGroup = "(?:[\\n\\r\\s]*)?(?:<[^>]*>)?(?:[\\n\\r\\s]*)?"
     regex = sentence
     regex = regex.replaceAll(`,`, ` , `)
     regex = regex.replaceAll(`'`, `['’]`)
     regex = regex.replaceAll(`"`, `["“”]`)
+    regex = regex.replaceAll(`(`, `\\(`)
+    regex = regex.replaceAll(`)`, `\\)`)
     regex = regex.replaceAll(` `, ignoreGroup)
     console.log(regex)
     const bodyContent = document.body.innerHTML;
