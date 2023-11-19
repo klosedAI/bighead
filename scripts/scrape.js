@@ -35,14 +35,13 @@ function scrapeData(callback) {
 
     // Function to scrape data after dynamic content is loaded
     function scrapeAfterLoading() {
-
+        console.log("Scraping after loading...");
+        let scrapedData = [];
         // const paragraphs = document.querySelectorAll('p');
         // paragraphs.forEach(paragraph => {
         //     scrapedData.push(paragraph.innerText);
         // });
-        const contentElements = document.querySelectorAll('.main-content p, .main-content h1, .main-content h2, .main-content ul');
-        let scrapedData = [];
-    
+        const contentElements = document.querySelectorAll('p, ul, h1, h2');    
         contentElements.forEach(element => {
             scrapedData.push(element.innerText); 
         });
