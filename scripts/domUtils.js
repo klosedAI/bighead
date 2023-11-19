@@ -18,8 +18,16 @@ function highlightSentence(sentence) {
     regex = regex.replaceAll(`\\ `, ignoreGroup)
     regex = "[\\s]*" + regex
     console.log(regex)
-    const bodyContent = document.body.innerHTML;
+
     const highlighted = `<span style="background-color: yellow; color: black">$&</span>`;
-    document.body.innerHTML = bodyContent.replace(new RegExp(regex, 'g'), highlighted);
+    for (const child of document.body.childNodes) {
+        const found = child.innerHTML.match(new RegExp(regex, 'g'));
+        if (found) {
+            console.log(found)
+            
+            child.innerHTML = child.innerHTML.replace(new RegExp(regex, 'g'), highlighted);
+            break;
+        }
+    }
 }
 

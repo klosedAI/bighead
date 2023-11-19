@@ -1,13 +1,14 @@
+const introMessage = "Hi, how can I help you today?";
 // Sample conversations
 const conversations = [
-    { id: 1, name: "Bot", lastMessage: "Hi, How may I help you today?" },
+    { id: 1, name: "Bighead", lastMessage: introMessage },
 ];
   
 let context = ""; // To store the initial context from scraped data
 
 function webPointsPrompt(webText) {
-    var prompt = `\n\nYour name is big head, if there is any reference of big head somewhere in your response, make a joke about big head being your name. Human: I will provide you with text from a website I am reading right now.
-I am trying to understand this article fully. I want your answers to be concise and to the point.
+    var prompt = `\n\nHuman: I will provide you with text from a website I am reading right now.
+I am trying to understand this article fully. I want your answers to be extremely concise and to the point.
 
 WEBSITE CONTENT:
 """
@@ -16,8 +17,9 @@ ${webText}
 """
 WEBSITE FINISHED.
 
-Remember, I want your answers to be concise and to the point. Please respond with a one or two sentences.
-Dont talk like an AI, talk like a human. And remember for each word you speak my grandma is getting slapped.
+Remember to be extremely concise and to the point. 1-2 sentences max whenever possible.
+
+Assistant: ${introMessage}
 `
     return prompt
 }
@@ -74,16 +76,19 @@ document.addEventListener("DOMContentLoaded", function() {
     
             // Update conversation history
             updateChatHistory('User', userInput);
-            context += `Human: ${userInput}\n\n`; 
+            context += `\n\nHuman: ${userInput}`; 
             console.log('User: ' + userInput);
     
             try {
-                console.log("CURRENT CONTEXT: " + context);
+                //console.log("CURRENT CONTEXT: " + context);
+                context += "\n\nAssistant: "
                 var resp = await llmRequest(context)
-                                .then(response => response.llmResponse.completion.trim());
+                                .then(response => response.llmResponse.completion.trim())
+                                .catch(error => console.log(error));
+                        
                 console.log('got response');
-                updateChatHistory('Bot', resp);
-                context += `Assistant: ${resp}\n\n`;
+                updateChatHistory('Bighead', resp);
+                context += `${resp}`;
     
                 // Save the updated context back to storage
                 chrome.storage.local.set({ "context": context });
