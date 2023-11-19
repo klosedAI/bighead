@@ -5,17 +5,16 @@
 </head>
 <body>
     <div class="chat-window">
-        <!-- Combined header -->
         <div class="chat-header">
-            <h1>Conversations</h1>
-            <button id="close-button" class="close-btn" onclick="parent.hideChatWindow()">X</button> <!-- Close button from HEAD, with class from saneens -->
+            Conversations
+            <span class="close-btn" id="close-btn">X</span>
         </div>
-
-        <div class="chat-content">
-            <div class="conversation-list">
-            </div>
-            <input type="text" id="chat-input" placeholder="Type your question...">
-            <button id="send-button">Send</button>
+        <div class="conversation-list">
+            <!-- Conversations will be dynamically loaded here -->
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type your message here...">
+            <button id="send-button">></button>
         </div>
     </div>
     <script src="../scripts/chatWindow.js"></script>

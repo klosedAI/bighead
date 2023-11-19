@@ -1,51 +1,37 @@
-/* General Styles */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Styles for chat window from HEAD branch */
-.chat-window {
+#chat-iframe {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 300px;
     height: 500px;
-    width: 350px; 
-    background-color: #f8f9fa;
     position: fixed;
     bottom: 20px;
     right: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    display: none;
+    background: white;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 1000;
-    /* display: none; */
 }
 
-/* Styles for chat input and send button from HEAD branch */
 #chat-input, #send-button {
     width: calc(100% - 20px); /* Adjust width as needed, 20px for padding */
     padding: 5px;
     margin: 5px 0;
     box-sizing: border-box;
 }
-
 #chat-input {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 #send-button {
     background-color: #28a745;
     color: white;
-    border: none;
-    border-radius: 4px;
+    border: 1px solid #28a745;
+    border-radius: 5px;
     cursor: pointer;
 }
-
 #send-button:hover {
     background-color: #218838;
 }
-
-/* Styles for chat history from HEAD branch */
 
 /* .conversation-list {
     height: calc(100% - 60px); 
@@ -55,8 +41,6 @@ body {
     margin-bottom: 10px;
     padding: 5px;
 } */
-
-/* Styles for chat header and conversation list from saneens branch */
 .chat-header {
     background: #f7f7f7;
     padding: 10px;
@@ -64,29 +48,43 @@ body {
     font-weight: bold;
     position: relative;
 }
-
 .close-btn {
     position: absolute;
     right: 10px;
     top: 10px;
     cursor: pointer;
 }
-
 .conversation-list {
     padding: 10px;
     max-height: 400px;
     overflow-y: auto;
 }
-
 .conversation {
     margin-bottom: 10px;
     padding: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #100f0f;
     border-radius: 4px;
     cursor: pointer;
 }
 
-/* Responsive Design from HEAD branch */
+.chat-input-area {
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+}
+
+#chat-input {
+    width: 80%;
+    padding: 5px;
+}
+
+#send-button {
+    width: 10%;
+    padding: 5px;
+}
+
 @media screen and (max-width: 600px) {
     .chat-window {
         width: 100%;
