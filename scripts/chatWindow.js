@@ -31,39 +31,13 @@ function llmRequest(prompt) {
                     reject(new Error(chrome.runtime.lastError.message));
                 } else {
                     // Resolve the promise with the response
+                    console.log("CHECK IF THERE IS A RESPONSE");
+                    console.log(response);
                     resolve(response);
                 }
             }
         );
     });
-}
-
-function scrapeDataFromMain() {
-    console.log("Sending request to Scrape");
-    return new Promise((resolve, reject) => {
-        chrome.runtime.sendMessage(
-            { contentScriptQuery: "scrapeData", data: ""},
-            response => {
-                if (chrome.runtime.lastError) {
-                    // Reject the promise if there's an error
-                    reject(new Error(chrome.runtime.lastError.message));
-                } else {
-                    // Resolve the promise with the response
-                    resolve(response);
-                }
-            }
-        );
-    });
-}
-
-
-async function initialContextSetup() {
-    // const webText = await scrapeData(); // Function to get scraped data
-    var webText = await scrapeDataFromMain()
-    .then(response => response.dataResponse.completion.trim());
-    console.log(webText);
-    context = webPointsPrompt(webText); // Initialize context with scraped data
-    console.log(context);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -74,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const conversationList = document.querySelector('.conversation-list');
     const closeButton = document.getElementById('close-btn');
 
-    initialContextSetup(); 
+    // initialContextSetup(); 
 
     closeButton.addEventListener('click', function() {
         hideChatWindow();
@@ -84,38 +58,37 @@ document.addEventListener("DOMContentLoaded", function() {
         renderConversations();
     }
 
-    // function sendMessage() {
-    //     const userInput = chatInput.value;
-    //     if (userInput) {
-    //         updateChatHistory('User', userInput);
-    //         llmRequest(userInput, (response) => {
-    //             updateChatHistory('Bot', response.llmResponse.completion);
-    //         });
-    //         console.log('User: ' + userInput);
-    //         chatInput.value = ''; // Clear input field after sending
-    //     }
-    // }
-    
     async function sendMessage() {
         const userInput = chatInput.value;
-        chrome.storage.local.get("context", function(result) {
-            console.log("Value currently is " + result.context);
-        });
         if (userInput) {
+            // Retrieve context asynchronously
+            let result = await new Promise((resolve, reject) => {
+                chrome.storage.local.get("context", resolve);
+            });
+            let context = result.context || ''; // Set default value if context is undefined
+            // console.log("Context before update: " + context);
+    
             // Update conversation history
             updateChatHistory('User', userInput);
             context += `Human: ${userInput}\n\n`; 
             console.log('User: ' + userInput);
-            console.log(context);
-            var resp = await llmRequest(context)
-                        .then(response => response.llmResponse.completion.trim());
-            // llmRequest(context, (response) => {
-            console.log('got response');
-            updateChatHistory('Bot', resp);
-            context += `Assistant: ${resp}\n\n`; 
-            // });
-
-            chatInput.value = ''; 
+    
+            try {
+                console.log("CURRENT CONTEXT: " + context);
+                var resp = await llmRequest(context)
+                                .then(response => response.llmResponse.completion.trim());
+                console.log('got response');
+                updateChatHistory('Bot', resp);
+                context += `Assistant: ${resp}\n\n`;
+    
+                // Save the updated context back to storage
+                chrome.storage.local.set({ "context": context });
+    
+            } catch (error) {
+                console.error("Error in llmRequest:", error);
+            }
+    
+            chatInput.value = ''; // Clear input field after sending
         }
     }
 
@@ -145,13 +118,6 @@ function showChatWindow() {
 
 function hideChatWindow() {
     console.log("Hiding chat window");
-    // const chatIframe = document.querySelector('.chat-iframe');
-    // const chatWindow = document.querySelector('.chat-window');
-    // const chatButton = document.querySelector('.chat-button');
-
-    // if (chatIframe) chatIframe.remove();
-    // if (chatWindow) chatWindow.remove();
-    // if (chatButton) chatButton.style.display = 'block';
     const chatIframe = document.querySelector('.chat-window');
     if (chatIframe) chatIframe.style.display = 'none';
 }
