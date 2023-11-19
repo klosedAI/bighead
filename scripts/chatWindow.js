@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function renderConversations() {
     const conversationList = document.querySelector('.conversation-list');
-    conversationList.innerHTML = conversations.map(c => `<div class="conversation">${c.name}: ${c.lastMessage}</div>`).join('');
+    conversationList.innerHTML = conversations.map(c => `<div class="conversation conv-${c.name.toLowerCase()}"><b>${c.name}</b>: ${c.lastMessage}</div>`).join('');
 }
 
 function updateChatHistory(sender, message) {
@@ -127,6 +127,5 @@ function showChatWindow() {
 
 function hideChatWindow() {
     console.log("Hiding chat window");
-    const chatIframe = document.querySelector('.chat-window');
-    if (chatIframe) chatIframe.style.display = 'none';
+    window.top.postMessage('closeChatWindow', '*');
 }

@@ -10,6 +10,7 @@
     background: white;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 1000;
+    background-color: #f7f7f7;
 }
 
 #chat-input, #send-button {
@@ -48,6 +49,7 @@
     font-weight: bold;
     position: relative;
 }
+
 .close-btn {
     position: absolute;
     right: 10px;
@@ -59,12 +61,21 @@
     max-height: 400px;
     overflow-y: auto;
 }
+
 .conversation {
     margin-bottom: 10px;
     padding: 5px;
-    border: 1px solid #100f0f;
+    /*border: 1px solid #100f0f;*/
     border-radius: 4px;
     cursor: pointer;
+}
+
+.conv-bighead {
+    background-color: #CEECDC;
+}
+
+.conv-user {
+    background-color: #D3E3F1;
 }
 
 .chat-input-area {
@@ -72,7 +83,6 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: white;
 }
 
 #chat-input {

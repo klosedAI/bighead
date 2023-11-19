@@ -21,12 +21,17 @@ function highlightSentence(sentence) {
 
     const highlighted = `<span style="background-color: yellow; color: black">$&</span>`;
     for (const child of document.body.childNodes) {
-        const found = child.innerHTML.match(new RegExp(regex, 'g'));
-        if (found) {
-            console.log(found)
-            
-            child.innerHTML = child.innerHTML.replace(new RegExp(regex, 'g'), highlighted);
-            break;
+        try {
+            const found = child.innerHTML.match(new RegExp(regex, 'gi'));
+            if (found) {
+                console.log(found)
+                
+                child.innerHTML = child.innerHTML.replace(new RegExp(regex, 'gi'), highlighted);
+                break;
+            }
+        }
+        catch {
+            console.log("some error I dont know");
         }
     }
 }
