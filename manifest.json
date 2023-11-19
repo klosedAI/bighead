@@ -8,28 +8,49 @@
       "contextMenus"
   ],
   "host_permissions": [
-      "http://*/*",
-      "https://*/*"
+    "http://*/*",
+    "https://*/*"
   ],
   "action": {
-      "default_popup": "html/index.html"
+    "default_popup": "html/index.html"
   },
   "options_page": "html/options.html",
   "background": {
-      "service_worker": "scripts/background.js"
+    "service_worker": "scripts/background.js"
   },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "html/chatWindow.html",
+        "scripts/chatWindow.js",
+        "styles/chatButtonStyles.css",
+        "html/chatButton.html",
+        "scripts/chatButton.js",
+        "styles.chatButtonStyles.css"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "content_scripts": [
-      {
-          "matches": [
-              "http://*/*",
-              "https://*/*"
-          ],
-          "js": [
-              "scripts/scrape.js",
-              "scripts/api.js",
-              "scripts/domUtils.js",
-              "scripts/main.js"
-          ]
-      }
-  ]
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "scripts/scrape.js",
+        "scripts/api.js",
+        "scripts/domUtils.js",
+        "scripts/main.js",
+        "scripts/chatButton.js"
+      ],
+      "css": [
+        "styles/chatButtonStyles.css",
+        "styles/chatWindow.css"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }

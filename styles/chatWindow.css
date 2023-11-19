@@ -1,0 +1,58 @@
+/* CSS for the chat window */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.chat-window {
+    height: 400px;
+    width: 300px;
+    position: fixed;
+    bottom: 100px; /* Adjust as per your layout */
+    right: 20px; /* Adjust as per your layout */
+    border: none;
+    z-index: 10000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.chat-header h1 {
+    margin: 0;
+}
+
+#close-button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#close-button:focus {
+    outline: none;
+}
+
+.chat-content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* Add more styles as needed for your chat content */
+
+/* Media query for responsiveness */
+@media screen and (max-width: 600px) {
+    .chat-window {
+        width: 100%;
+    }
+}
