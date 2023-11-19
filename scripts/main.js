@@ -1,4 +1,3 @@
-// Create the chat iframe
 const chatIframe = document.createElement('iframe');
 chatIframe.id = 'chat-iframe';
 chatIframe.src = chrome.runtime.getURL('html/chatWindow.html');
@@ -64,7 +63,7 @@ async function main() {
     console.log(resp)
 
     const webText = await scrapeData();
-    console.log(webText);
+    // console.log(webText);
     var prompt = webPointsPrompt(webText)
 
     for (var i = 1; i <= 0; i++) {
@@ -85,3 +84,20 @@ async function main() {
     }
     
 }
+
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("Got message from chat window");
+    if (request.contentScriptQuery == "scrapeData") {
+        (async () => {
+            const response = await scrapeData();
+            sendResponse({
+                dataResponse: response,
+            });
+        })();
+        return true;
+    }
+});
+
+
+
