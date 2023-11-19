@@ -14,6 +14,7 @@ function highlightSentence(sentence) {
     regex = regex.replaceAll(`"`, `["“”]`)
     regex = regex.replaceAll(`(`, `\\(`)
     regex = regex.replaceAll(`)`, `\\)`)
+    regex = regex.replaceAll('&', '&(?:amp;)')
     regex = regex.replaceAll(` `, ignoreGroup)
     console.log(regex)
     const bodyContent = document.body.innerHTML;
