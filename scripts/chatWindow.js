@@ -1,56 +1,74 @@
-document.addEventListener('DOMContentLoaded', function () {
+function llmRequest(prompt, callback) {
+    chrome.runtime.sendMessage(
+        { contentScriptQuery: "llmRequest", data: prompt },
+        callback
+    );
+}
+
+// Sample conversations
+const conversations = [
+    { id: 1, name: "Bot", lastMessage: "Hi, How may I help you today?" },
+];
+  
+document.addEventListener("DOMContentLoaded", function() {
     console.log('DOM fully loaded and parsed');
-    // Elements and variables from the HEAD branch
+
     const sendButton = document.getElementById('send-button');
     const chatInput = document.getElementById('chat-input');
-    // const chatHistory = document.getElementById('chat-history');
-    const closeButton = document.getElementById('close-button');
-    let conversationHistory = '';
-
-    // Elements and variables from the saneens branch
-    const conversations = [
-        { id: 1, name: "Bot", lastMessage: "Hi, How may I help you today?" },
-        // ... more conversations
-    ];
     const conversationList = document.querySelector('.conversation-list');
 
-    // Event listener for closeButton (from HEAD)
-    closeButton.addEventListener('click', function () {
+    const closeButton = document.getElementById('close-btn');
+    closeButton.addEventListener('click', function() {
         hideChatWindow();
     });
 
-    // Event listener for sendButton (from HEAD)
-    sendButton.addEventListener('click', function () {
+    if (conversationList) {
+        renderConversations();
+    }
+
+    function sendMessage() {
         const userInput = chatInput.value;
         if (userInput) {
             updateChatHistory('User', userInput);
-            // Send user input to the API along with scraped data
             llmRequest(userInput, (response) => {
-                updateChatHistory('Bot', response);
+                updateChatHistory('Bot', response.llmResponse.completion);
             });
+            console.log('User: ' + userInput);
             chatInput.value = ''; // Clear input field after sending
+        }
+    }
+    
+    sendButton.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') { 
+            sendMessage();
         }
     });
 
-    // Function to update chat history (from HEAD)
-    function updateChatHistory(sender, message) {
-        conversationHistory += `<p><strong>${sender}:</strong> ${message}</p>`;
-        conversationList.innerHTML = conversationHistory;
-    }
-
-    // Populate conversationList with sample conversations (from saneens)
-    if (conversationList) {
-        conversationList.innerHTML = conversations.map(c => `<div class="conversation">${c.name}: ${c.lastMessage}</div>`).join('');
-    }
 });
 
-// Functions to show and hide chat window (from saneens)
+function renderConversations() {
+    const conversationList = document.querySelector('.conversation-list');
+    conversationList.innerHTML = conversations.map(c => `<div class="conversation">${c.name}: ${c.lastMessage}</div>`).join('');
+}
+
+function updateChatHistory(sender, message) {
+    conversations.push({ id: conversations.length + 1, name: sender, lastMessage: message });
+    renderConversations();
+}
+
 function showChatWindow() {
     const chatIframe = document.querySelector('.chat-window');
     if (chatIframe) chatIframe.style.display = 'block';
 }
 
 function hideChatWindow() {
-    const chatIframe = document.querySelector('.chat-window');
-    if (chatIframe) chatIframe.style.display = 'none';
+    console.log("Hiding chat window");
+    const chatIframe = document.querySelector('.chat-iframe');
+    const chatWindow = document.querySelector('.chat-window');
+    const chatButton = document.querySelector('.chat-button');
+
+    if (chatIframe) chatIframe.remove();
+    if (chatWindow) chatWindow.remove();
+    if (chatButton) chatButton.style.display = 'block';
 }

@@ -14,13 +14,6 @@ if (document.readyState !== 'loading') {
     });
 }
 
-function llmRequest(prompt, callback) {
-    chrome.runtime.sendMessage(
-        { contentScriptQuery: "llmRequest", data: prompt },
-        callback
-    );
-}
-
 async function main() {
     console.log("Webpage loaded!")
 
