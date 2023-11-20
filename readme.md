@@ -44,7 +44,7 @@ Most of the internet is filled with clickbaity articles that are hard to read an
 The app is designed to be fully client side. No data is stored and user gets to add their own Claude AI API keys.
 
 ## Demos
-[Youtube Link]()
+[Youtube Link](https://youtu.be/Tvks3vn4TTE)
 
 ## Contributors
 - [Muhammed Saneens Bin Zubair](mailto:msaneens@gmail.com)
