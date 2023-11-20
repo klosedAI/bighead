@@ -11,7 +11,8 @@ const body = {
   model: "claude-2.0",
   prompt: "\n\nHuman: Hello, world! How are you? \n\nAssistant:",
   max_tokens_to_sample: 256,
-  stream: false
+  stream: false,
+  temperature: 0
 };
 
 async function claudeRequest(body) {
@@ -40,7 +41,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         return true;
     }
 });
-  
+
 // If user enters new API key through settings page, update it in here
 chrome.storage.onChanged.addListener((changes, namespace) => {
   for (let [key, { oldValue, newValue }] of Object.entries(changes)) {

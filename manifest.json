@@ -21,12 +21,14 @@
   "web_accessible_resources": [
     {
       "resources": [
+        "scripts/scrape.js",
         "html/chatWindow.html",
         "scripts/chatWindow.js",
         "styles/chatButtonStyles.css",
         "html/chatButton.html",
         "scripts/chatButton.js",
-        "styles.chatButtonStyles.css"
+        "styles.chatButtonStyles.css",
+        "assets/bighead.png"
       ],
       "matches": ["<all_urls>"]
     }
@@ -36,6 +38,11 @@
       "matches": [
         "http://*/*",
         "https://*/*"
+      ],
+      "exclude_matches": [
+          "https://*.google.com/*",
+          "https://*.twitter.com/*",
+          "https://*.x.com/*"
       ],
       "js": [
         "scripts/scrape.js",
